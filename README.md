@@ -71,3 +71,4 @@ Para que el sistema te avise al móvil si un equipo se cae o la CPU se satura (>
 ## Equipo de Desarrollo
 Proyecto desarrollado para la asignatura de Ingeniería de Software.
 * Sergio Sancho Azcoitia
+* Diego Santodomingo Fernández

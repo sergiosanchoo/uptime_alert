@@ -6,6 +6,7 @@ __pycache__/
 # Archivos de configuración y bases de datos locales ¡IMPORTANTE!
 config.json
 equipos_ping.json
+users.json
 
 # Archivos de configuración del IDE (IntelliJ)
 .idea/
