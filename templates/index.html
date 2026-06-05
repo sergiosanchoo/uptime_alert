@@ -52,8 +52,8 @@
 <div class="header">
     <h1>🟢 Uptime Alert</h1>
     <div style="display: flex; gap: 10px; align-items: center;">
-        <button class="btn-settings" onclick="openSettings()">⚙️ Ajustes de Alertas</button> /* Botón de configuración en la cabecera */
-        <a href="/logout" style="color: #ef4444; text-decoration: none; font-size: 0.9rem;">Cerrar sesión</a> /* Botón de logout */
+        <button class="btn-settings" onclick="openSettings()">⚙️ Ajustes de Alertas</button>
+        <a href="/logout" style="color: #ef4444; text-decoration: none; font-size: 0.9rem;">Cerrar sesión</a>
     </div>
 </div>
 
@@ -72,7 +72,7 @@
 
         <div class="tutorial-box">
             <p><strong>1.</strong> Abre Telegram y busca <strong>@BotFather</strong>. Escribe <code>/newbot</code> para crear un bot y copia el Token generado.</p>
-            <p><strong>2.</strong> Busca <strong>@userinfobot</strong> en Telegram y dale a iniciar para obtener tu Id numérico.</p>
+            <p><strong>2.</strong> Busca <strong>@id_bot</strong> en Telegram y dale a iniciar para obtener tu Id numérico.</p>
             <p><strong>3.</strong> ¡Importante! Busca tu nuevo bot en Telegram y dale a Iniciar para que pueda hablarte.</p>
         </div>
 
@@ -81,7 +81,7 @@
             <input type="text" id="tg-token" placeholder="Ej: 123456789:ABCdefGhIJKlmNoPQRstuVWxyz">
         </div>
         <div class="form-group">
-            <label for="tg-chatid">Tu Chat ID (@userinfobot)</label>
+            <label for="tg-chatid">Tu Chat ID (@id_bot)</label>
             <input type="text" id="tg-chatid" placeholder="Ej: 123456789">
         </div>
 
@@ -119,13 +119,29 @@
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({telegram_token: token, telegram_chat_id: chat_id})
         });
-        alert("✅ Configuración guardada correctamente.");
+
+        // Cerramos la ventana directamente. El usuario entiende que al desaparecer, se ha guardado.
         closeSettings();
     }
 
     async function testTelegram() {
+        const token = document.getElementById('tg-token').value;
+        const chat_id = document.getElementById('tg-chatid').value;
+
+        if (!token || !chat_id) {
+            return alert("⚠️ Por favor, introduce el Token y el Chat ID antes de probar.");
+        }
+
+        // Guardado silencioso por debajo
+        await fetch('/api/config', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({telegram_token: token, telegram_chat_id: chat_id})
+        });
+
+        // Disparamos la alerta de prueba con un mensaje más directo
         await fetch('/api/test_telegram', { method: 'POST' });
-        alert("Enviando mensaje de prueba... Revisa tu Telegram.");
+        alert("✅ Mensaje de prueba enviado. Revisa tu Telegram.");
     }
 
     // --- LÓGICA DEL DASHBOARD (Igual que antes) ---
