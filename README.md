@@ -64,7 +64,7 @@ Para que el sistema te avise al móvil si un equipo se cae o la CPU se satura (>
 2. Busca a **@id_bot** para obtener tu Chat ID numérico.
 3. Inicia una conversación con tu nuevo bot en Telegram (botón "Iniciar").
 4. En el Dashboard web de Uptime Alert, haz clic en **"⚙️ Ajustes de Alertas"** y pega tu Token y Chat ID.
-5. ¡Listo! Puedes hacer clic en "Probar Bot" para verificar que la conexión funciona.
+5. ¡Listo! Puedes hacer click en "Probar Bot" para verificar que la conexión funciona.
 
 ---
 
